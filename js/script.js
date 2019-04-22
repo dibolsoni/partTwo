@@ -18,7 +18,7 @@ shows 10 elements from the list per page
 ***/
 const showPage = (list, page) => {
    const first = page * 10;
-   const last = Math.ceil(page + 1) * 10;
+   const last = Math.ceil(page + 1) * 10 - 1;
    for (let i = 0; i < list.length; i++) {
       if (i >= first && i <= last ) {
          list[i].style.display = 'contents';
@@ -88,9 +88,21 @@ const appendPageLinks = (list) => {
 search funcionability
 on key up search student and return the content to the page
 */
-const searchStudent = () => {   
+
+const makeSearchInput = () => {
+   const headerDiv = document.querySelector('.page-header');
+   const div = document.createElement('div');
+   div.className = 'student-search';
+   const input = document.createElement('input');
+   input.placeholder = 'Search for students...';
+   headerDiv.appendChild(div);
+   div.appendChild(input);
+
+}
+
+const makeErrorMsg = (text) => {
    let h3 = document.createElement('h3');
-   h3.textContent = 'Error 404 - Student not found'
+   h3.textContent = text;
    let li = document.createElement('li');
    li.className = 'student-item cf'
    li.id = 'error';
@@ -100,6 +112,11 @@ const searchStudent = () => {
    li.appendChild(h3);
    let ul = document.querySelector('.student-list');
    ul.appendChild(li);
+}
+
+const searchStudent = () => { 
+   makeSearchInput();  
+   makeErrorMsg('Error 404 - Student not found. Try again!');
 
    const name = document.querySelectorAll('.student-details h3');
    const input = document.querySelector('.student-search input');
