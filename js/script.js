@@ -8,7 +8,6 @@ FSJS project 2 - List Filter and Pagination
 
 /* 
 make studentsList as all 'li' from the page
-loads all students in array of js obj = students
 */
 const studentsList = document.querySelectorAll('li');
 
